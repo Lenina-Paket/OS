@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/lab3_test.dir/test/tests.cpp.o  -o lab3_test  liblab3_lib.a -lgtest -lgtest_main -lpthread 

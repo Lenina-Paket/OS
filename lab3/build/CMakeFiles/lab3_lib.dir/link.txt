@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblab3_lib.a  CMakeFiles/lab3_lib.dir/src/arrayfigure.cpp.o CMakeFiles/lab3_lib.dir/src/figure.cpp.o CMakeFiles/lab3_lib.dir/src/rectangle.cpp.o CMakeFiles/lab3_lib.dir/src/romb.cpp.o CMakeFiles/lab3_lib.dir/src/trapeoid.cpp.o
+/usr/bin/ranlib liblab3_lib.a

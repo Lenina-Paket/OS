@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/figure.hpp
+iostream
+-
+vector
+-
+cmath
+-
+
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/rectangle.hpp
+figure.hpp
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/figure.hpp
+
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/romb.hpp
+figure.hpp
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/figure.hpp
+
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/trapeoid.hpp
+figure.hpp
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/figure.hpp
+
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/src/rectangle.cpp
+../include/rectangle.hpp
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/rectangle.hpp
+
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/src/romb.cpp
+../include/romb.hpp
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/romb.hpp
+
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/src/trapeoid.cpp
+../include/trapeoid.hpp
+/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/include/trapeoid.hpp
+
