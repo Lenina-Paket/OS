@@ -1,5 +1,34 @@
 #include <gtest/gtest.h>
 #include "thirteen.h"
+bool constructorTest() {
+    Thirteen s1 {'1', '2', '3'};
+    std::string test = "123";
+    Thirteen s2(test);
+    Thirteen s3 {'3', '6', '1'}, s3_1(s3), s4(std::move(s3)), s5(5, '1');
+    std::cout << s1 << " : s1 " << s2 << ": s2 " << s3_1 << " : s3_1 " << s4 << " : s4 " << s5 << " : s5 "<< std::endl;
+    return (s1 == s2 and s3_1 == s4 and s3_1 != s5);
+}
+
+TEST(constructorTest,test_01) {
+    ASSERT_TRUE(constructorTest());
+}
+
+TEST(throw_constructor_test,test_01) {
+    ASSERT_ANY_THROW(Thirteen s1("98abg"));
+}
+
+TEST(throw_constrctor_test,test_02) {
+    
+    ASSERT_ANY_THROW(Thirteen s1("ab%*"));
+}
+
+TEST(throw_constrctor_test, test_03) {
+    std::string test = "24 1";
+    ASSERT_ANY_THROW(Thirteen s1(test));
+}
+
+
+
 
 TEST(equal, test01) {
     Thirteen num1("0"), num2("0");
@@ -165,6 +194,12 @@ TEST(add, test07) {
     Thirteen num1("00000000000004"), num2("1abc2222");
     std::cout<< num1 << std::endl;
     ASSERT_TRUE(num1 + num2 == Thirteen("1abc2226"));
+}
+
+TEST(add, test08) {
+    Thirteen num1("ccc"), num2("1");
+    std::cout<< num1 + num2 << std::endl;
+    ASSERT_TRUE(num1 + num2 == Thirteen("1000"));
 }
 
 TEST(add_n_ravno, test01) {
