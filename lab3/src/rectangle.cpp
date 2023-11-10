@@ -7,7 +7,9 @@ Rectangle::Rectangle() {
 
 Rectangle::Rectangle(const std::vector<pdd> &coords) {
     if (coords.size() != 4) {
-        throw std::range_error("Error! Rectangle Constructor: invalid number of coordinates");
+        throw std::invalid_argument("Error! Rectangle Constructor: invalid number of coordinates");
+    } else if (not(IsCoordsValid_Rectangle(coords))) {
+        throw std::invalid_argument("Error! Rectangle Constructor: you trying make not a Rectangle");
     } else {
         _coords = coords;
     }
@@ -82,4 +84,24 @@ Rectangle& Rectangle::operator=(Rectangle &&other) {
         _coords[i] = other._coords[i];
     }
     return *this;
+}
+
+bool Rectangle::IsCoordsValid_Rectangle(const std::vector<pdd> &coords) {
+    pdd AB, BC, CD, AD;
+    AB.first = (coords[0].first - coords[1].first);
+    AB.second = (coords[0].second - coords[1].second);
+
+    BC.first = (coords[1].first - coords[2].first);
+    BC.second = (coords[1].second - coords[2].second);
+
+    CD.first = (coords[2].first - coords[3].first);
+    CD.second = (coords[2].second - coords[3].second);
+
+    AD.first = (coords[0].first - coords[3].first);
+    AD.second = (coords[0].second - coords[3].second);
+
+    return( (AB.first * BC.first + AB.second * BC.second == 0) and (CD.first * BC.first + CD.second * BC.second == 0) and
+        (abs(sqrt(AB.first * AB.first + AB.second * AB.second) - sqrt(CD.first * CD.first + CD.second * CD.second)) < 0.0001) and
+        (abs(sqrt(BC.first * BC.first + BC.second * BC.second) - sqrt(AD.first * AD.first + AD.second * AD.second)) < 0.0001) and
+        (abs(sqrt(BC.first * BC.first + BC.second * BC.second) != sqrt(AB.first * AB.first + AB.second * AB.second))));
 }

@@ -9,13 +9,14 @@ class Trapeoid final : public Figure {
 
         virtual ~Trapeoid() = default;
 
-        pdd Center() const override;
-        operator double () const override;
+        bool IsCoordsValid_Trapeoid(const std::vector<pdd> &coords);
 
         friend istream &operator>>(istream &stream, Trapeoid &trap);
         friend ostream &operator<<(ostream &stream, Trapeoid &trap);
 
+        pdd Center() const override;
+        operator double () const override;
+
         Trapeoid& operator=(Trapeoid &&other);
         bool operator==(const Trapeoid & other) const;
-    private:
 };

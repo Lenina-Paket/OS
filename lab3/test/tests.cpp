@@ -5,7 +5,7 @@
 #include "../include/array_figure.hpp"
 #include "../include/figure.hpp"
 
-
+//-------------Rectangle tests------------------------------//
 
 TEST(test_01, Rectangle_Constructor) {
     vector<pdd> coords;
@@ -21,6 +21,27 @@ TEST(test_01, Rectangle_Constructor) {
     Rectangle rect0(move(rect));
     ASSERT_TRUE(rect == rect1 and rect4 == rect5 and rect0 == rect4);
 }
+
+TEST(test_02, Rectangle_Constructor) {
+    vector<pdd> coords;
+    coords.push_back({-1, 1});
+    coords.push_back({0, 1});
+    coords.push_back({0, 0});
+    coords.push_back({-1, 0});
+
+    ASSERT_ANY_THROW(Rectangle rect(coords));
+}
+
+TEST(test_03, Rectangle_Constructor) {
+    vector<pdd> coords;
+    coords.push_back({1, 3});
+    coords.push_back({2, 3});
+    coords.push_back({3, 0});
+    coords.push_back({0, 0});
+
+    ASSERT_ANY_THROW(Rectangle rect(coords));
+}
+
 
 TEST(test_01, Rectangle_methods) {
     vector<pdd> coords;
@@ -92,6 +113,26 @@ TEST(test_01, Romb_Constructor) {
     ASSERT_TRUE(romb == romb1 and romb4 == romb5 and romb0 == romb4);
 }
 
+TEST(test_02, Romb_Constructor) {
+    vector<pdd> coords;
+    coords.push_back({-1, 1});
+    coords.push_back({1, 1});
+    coords.push_back({1, 0});
+    coords.push_back({-1, 0});
+
+    ASSERT_ANY_THROW(Romb romb(coords));
+}
+
+TEST(test_03, Romb_Constructor) {
+    vector<pdd> coords;
+    coords.push_back({1, 3});
+    coords.push_back({2, 3});
+    coords.push_back({3, 0});
+    coords.push_back({0, 0});
+
+    ASSERT_ANY_THROW(Romb romb(coords));
+}
+
 TEST(test_01, Romb_methods) {
     vector<pdd> coords;
     coords.push_back({2, 1.5});
@@ -128,7 +169,7 @@ TEST(test_03, Romb_methods) {
     coords2.push_back({2, -3});
     coords2.push_back({1, 0});
 
-    Rectangle romb(coords), romb2(coords2);
+    Romb romb(coords), romb2(coords2);
 
     ASSERT_FALSE(romb == romb2);
 }
@@ -140,11 +181,11 @@ TEST(test_04, Romb_methods) {
     coords.push_back({2, -1.5});
     coords.push_back({1, 0});
 
-    Rectangle romb(coords), romb2 = romb;
+    Romb romb(coords), romb2 = romb;
 
     ASSERT_TRUE(romb == romb2);
 }
-//---------------------------------Trapeoid tests ------------------------//
+//-----------------Trapeoid tests ------------------------//
 
 TEST(test_01, Trapeoid_Constructor) {
     vector<pdd> coords;
@@ -159,6 +200,26 @@ TEST(test_01, Trapeoid_Constructor) {
     Trapeoid trap5(trap);
     Trapeoid trap0(move(trap));
     ASSERT_TRUE(trap == trap1 and trap4 == trap5 and trap0 == trap4);
+}
+
+TEST(test_02, Trapeoid_Constructor) {
+    vector<pdd> coords;
+    coords.push_back({-1, 1});
+    coords.push_back({0, 1});
+    coords.push_back({0, 0});
+    coords.push_back({-1, 0});
+
+    ASSERT_ANY_THROW(Trapeoid trap(coords));
+}
+
+TEST(test_03, Trapeoid_Constructor) {
+    vector<pdd> coords;
+    coords.push_back({-1, 1});
+    coords.push_back({1, 1});
+    coords.push_back({1, 0});
+    coords.push_back({-1, 0});
+
+    ASSERT_ANY_THROW(Trapeoid trap(coords));
 }
 
 TEST(test_01, Trapeoid_methods) {
@@ -214,7 +275,7 @@ TEST(test_04, Trapeoid_methods) {
 
     ASSERT_TRUE(trap == trap2);
 }
-//------------------------------- Array Figures Tests ---------------------------------//
+//------------------- Array of Figures Tests -------------------//
 
 TEST(test_01, Array_Figures) {
     Array_Figure Figures;

@@ -1,7 +1,7 @@
 #include "../include/array_figure.hpp"
 
 Array_Figure::Array_Figure() : _size{0}, _capacity{100} {
-    _array = new Figure * [_capacity];
+    _array = new Figure *[_capacity];
 }
 
 Array_Figure::~Array_Figure() {

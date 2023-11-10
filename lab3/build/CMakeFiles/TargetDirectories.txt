@@ -1,5 +1,0 @@
-/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/build/CMakeFiles/edit_cache.dir
-/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/build/CMakeFiles/lab3_test.dir
-/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/build/CMakeFiles/rebuild_cache.dir
-/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/build/CMakeFiles/lab3_main.dir
-/home/artyom/Документы/VS code projects/project1/OOP/labs/lab3/build/CMakeFiles/lab3_lib.dir

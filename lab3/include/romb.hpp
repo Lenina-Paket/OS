@@ -9,12 +9,17 @@ class Romb final : public Figure {
 
         virtual ~Romb() = default;
 
+        bool IsCoordsValid_Romb(const std::vector<pdd> &coords);
+
         friend istream &operator>>(istream &stream, Romb &romb);
         friend ostream &operator<<(ostream &stream, Romb &romb);
+
         pdd Center() const override;
         operator double() const override;
+        
         Romb& operator=(Romb &&other);
         bool operator==(const Romb &other) const;
 
     private:
+        
 };

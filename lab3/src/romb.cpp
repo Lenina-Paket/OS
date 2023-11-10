@@ -8,10 +8,12 @@ Romb::Romb() {
 Romb::Romb(const std::vector<pdd> &coords) {
     if (coords.size() != 4) {
         throw std::range_error("Error! Romb Constructor: invalid number of coordinates");
+    } else if (not(IsCoordsValid_Romb(coords))) {
+        throw std::invalid_argument("Error! Romb Constructor: you trying to make not a Romb");
     } else {
         _coords = coords;
     }
-}
+} 
 
 Romb::Romb(const Romb &other) noexcept {
     _coords = other._coords;
@@ -83,4 +85,30 @@ Romb& Romb::operator=(Romb &&other) {
         _coords[i] = other._coords[i];
     }
     return *this;
+}
+
+bool Romb::IsCoordsValid_Romb(const std::vector<pdd> &coords) {
+    pdd AB, BC, CD, AD;
+    AB.first = (coords[0].first - coords[1].first);
+    AB.second = (coords[0].second - coords[1].second);
+
+    BC.first = (coords[1].first - coords[2].first);
+    BC.second = (coords[1].second - coords[2].second);
+
+    CD.first = (coords[2].first - coords[3].first);
+    CD.second = (coords[2].second - coords[3].second);
+
+    AD.first = (coords[0].first - coords[3].first);
+    AD.second = (coords[0].second - coords[3].second);
+
+    return (abs((sqrt(AB.first * AB.first + AB.second * AB.second) - sqrt(CD.first * CD.first + CD.second * CD.second)) < 0.0001) and
+        abs((sqrt(BC.first * BC.first + BC.second * BC.second) - sqrt(AB.first * AB.first + AB.second * AB.second)) < 0.0001) and
+        (abs(sqrt(AD.first * AD.first + AD.second * AD.second) - sqrt(AB.first * AB.first + AB.second * AB.second)) < 0.0001) and
+
+        (abs((AB.first * CD.first + AB.second * CD.second) / 
+        sqrt((AB.first * AB.first + AB.second * AB.second) * (CD.first * CD.first + CD.second * CD.second))) == 1) and
+        
+        (abs((AD.first * BC.first + AD.second * BC.second) / 
+        sqrt((AD.first * AD.first + AD.second * AD.second) * (BC.first * BC.first + BC.second * BC.second))) == 1));
+
 }
