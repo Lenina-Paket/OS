@@ -1,4 +1,0 @@
-/home/artyom/Документы/vs code projects/OOP/lab4/build/CMakeFiles/lab04_exe.dir
-/home/artyom/Документы/vs code projects/OOP/lab4/build/CMakeFiles/lab04_test.dir
-/home/artyom/Документы/vs code projects/OOP/lab4/build/CMakeFiles/edit_cache.dir
-/home/artyom/Документы/vs code projects/OOP/lab4/build/CMakeFiles/rebuild_cache.dir

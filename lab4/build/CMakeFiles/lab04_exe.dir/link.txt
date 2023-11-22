@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/lab04_exe.dir/main.cpp.o -o lab04_exe 
