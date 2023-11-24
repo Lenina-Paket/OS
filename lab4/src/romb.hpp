@@ -6,12 +6,6 @@ template <class T>
 class Romb;
 
 template <class T>
-std::istream &operator>>(std::istream &stream, Romb<T> &romb);
-
-template <class T>
-std::ostream &operator<<(std::ostream &stream, Romb<T> &romb);
-
-template <class T>
 class Romb final : public Figure<T> {
     public:
         Romb();
@@ -24,10 +18,16 @@ class Romb final : public Figure<T> {
         bool IsCoordsValid_Romb(const Array<std::pair<T, T>> &coords);
 
         friend std::istream &operator>>(std::istream &stream, Romb &romb) {
+            Array<std::pair<T, T>> tmp_arr;
             std::pair<T, T> temp;
             for (int i = 0; i < 4; i++) {
                 stream >> temp.first >> temp.second;
                 romb._coords.Pushback(temp);
+            }
+            if (romb.IsCoordsValid_Romb(tmp_arr)) {
+                romb._coords = tmp_arr;
+            } else {
+                throw std::invalid_argument("Invalid args for Romb");
             }
             return stream;
 

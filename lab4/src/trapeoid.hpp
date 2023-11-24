@@ -6,12 +6,6 @@ template <class T>
 class Trapeoid;
 
 template <class T>
-std::istream &operator>>(std::istream &stream, Trapeoid<T> &trap);
-
-template <class T>
-std::ostream &operator<<(std::ostream &stream, Trapeoid<T> &trap);
-
-template <class T>
 class Trapeoid final : public Figure<T> {
     public:
         Trapeoid();
@@ -24,10 +18,16 @@ class Trapeoid final : public Figure<T> {
         bool IsCoordsValid_Trapeoid(const Array<std::pair<T, T>> &coords);
 
         friend std::istream &operator>>(std::istream &stream, Trapeoid &trap) {
+            Array<std::pair<T, T>> tmp_arr;
             std::pair<T, T> temp;
             for (int i = 0; i < 4; i++) {
                 stream >> temp.first >> temp.second;
                 trap._coords.Pushback(temp);
+            }
+            if (trap.IsCoordsValid_Trapeoid(tmp_arr)) {
+                trap._coords = tmp_arr;
+            } else {
+                throw std::invalid_argument("Invalid args for Trapeoid");
             }
             return stream;
         };
@@ -115,28 +115,6 @@ std::pair<T, T> Trapeoid<T>::Center() const {
 
     return {sum_x / this->_coords.GetSize(),sum_y / this->_coords.GetSize()};
 } 
-/*
-template <class T>
-std::istream &operator>>(std::istream &stream, Trapeoid<T> &trap) {
-    std::pair<T, T> temp;
-    for (int i = 0; i < 4; i++) {
-        stream >> temp.first >> temp.second;
-        trap._coords.PushBack(temp);
-    }
-    return stream;
-}
-
-template <class T>
-std::ostream &operator<<(std::ostream &stream, Trapeoid<T> &trap) {
-    for (size_t i = 0; i < trap._coords.GetSize(); ++i) {
-        stream << "Coord " << i + 1 << " is ";
-        stream << trap._coords[i].first << ' ' << trap._coords[i].second << '\n';
-    }
-    stream << '\n';
-    return stream;
-
-}
-*/
 
 template <class T>
 bool Trapeoid<T>::operator==(const Trapeoid<T> &other) const {

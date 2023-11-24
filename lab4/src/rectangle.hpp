@@ -6,12 +6,6 @@ template <class T>
 class Rectangle;
 
 template <class T>
-std::istream &operator>>(std::istream &stream, Rectangle<T> &rect);
-
-template <class T>
-std::ostream &operator<<(std::ostream &stream, Rectangle<T> &rect);
-
-template <class T>
 class Rectangle final : public Figure<T> {
     public:
         Rectangle();
@@ -24,10 +18,16 @@ class Rectangle final : public Figure<T> {
         bool IsCoordsValid_Rectangle(const Array<std::pair<T, T>> &coords);
 
         friend std::istream &operator>>(std::istream &stream, Rectangle &rect) {
+            Array<std::pair<T, T>> tmp_arr;
             std::pair<T, T> temp;
             for (int i = 0; i < 4; i++) {
                 stream >> temp.first >> temp.second;
-                rect._coords.Pushback(temp);
+                tmp_arr.Pushback(temp);
+            }
+            if (rect.IsCoordsValid_Rectangle(tmp_arr)) {
+                rect._coords = tmp_arr;
+            } else {
+                throw std::invalid_argument("Invalid args for Rectangle");
             }
             return stream;
         };
