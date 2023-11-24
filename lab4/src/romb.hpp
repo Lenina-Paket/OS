@@ -22,7 +22,7 @@ class Romb final : public Figure<T> {
             std::pair<T, T> temp;
             for (int i = 0; i < 4; i++) {
                 stream >> temp.first >> temp.second;
-                romb._coords.Pushback(temp);
+                tmp_arr.Pushback(temp);
             }
             if (romb.IsCoordsValid_Romb(tmp_arr)) {
                 romb._coords = tmp_arr;

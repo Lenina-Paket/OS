@@ -22,7 +22,7 @@ class Trapeoid final : public Figure<T> {
             std::pair<T, T> temp;
             for (int i = 0; i < 4; i++) {
                 stream >> temp.first >> temp.second;
-                trap._coords.Pushback(temp);
+                tmp_arr.Pushback(temp);
             }
             if (trap.IsCoordsValid_Trapeoid(tmp_arr)) {
                 trap._coords = tmp_arr;
