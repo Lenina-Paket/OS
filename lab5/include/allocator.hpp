@@ -46,6 +46,9 @@ class Allocator {
         };
 
         void deallocate(pointer ptr, size_type n) {
+            if (ptr < &_used_blocks[0] or ptr > &_used_blocks[0] + BLOCK_SIZE) {
+                throw std::logic_error("You're wanna to deallocate with unknown ptr");
+            } 
             if (n > BLOCK_SIZE - _free_count) {
                 throw std::logic_error("You wanna to deallocate too much");
             }

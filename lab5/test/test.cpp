@@ -80,6 +80,12 @@ TEST(allocator, test_03) {
     ASSERT_EQ(BLOCK_SIZE - alloc.free_count(), 1);
 }
 
+TEST(allocator, test_04) {
+    Allocator<int> alloc;
+    int* data = nullptr;
+    ASSERT_ANY_THROW(alloc.deallocate(data, 999));
+}
+
 TEST(iterator, test_01) {
     Vector<int, Allocator<int>> vec;
     vec.pushBack(1);
