@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/lab05_exe.dir/main.cpp.o -o lab05_exe 
