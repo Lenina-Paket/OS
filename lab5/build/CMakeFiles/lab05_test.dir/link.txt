@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/lab05_test.dir/test/test.cpp.o -o lab05_test  -lgtest -lgtest_main 
