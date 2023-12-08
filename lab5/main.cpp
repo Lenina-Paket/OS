@@ -17,12 +17,19 @@ int main() {
     for (auto el: mp) {
         std::cout << el.first << ' ' << el.second << std::endl;
     }
-
+    //добавил много-много (вообще много) добавлений и удалений
     Vector<int, Allocator<int>> vec;
-    vec.pushBack(1);
-    vec.pushBack(2);
-    vec.pushBack(3);
-    vec.pop_back();
+    for (int i = 0; i < 5000; i++) {
+    if (i % 2 == 0) {
+        vec.pushBack(i);
+        vec.pop_back();
+        vec.pushBack(i*2);
+    } else {
+        vec.pop_back();
+    }
+    }
+    
+    
 
     for (const auto &el : vec) {
         std::cout << el << std::endl;

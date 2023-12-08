@@ -89,6 +89,7 @@ class Vector {
         };
 
         void clear() {
+            _alloc.deallocate(_data, _size); // добавил деаллоцирование 
             _data = nullptr;
             _size = 0;
         };
@@ -122,22 +123,27 @@ class Vector {
                 using iterator_category = std::forward_iterator_tag;
 
                 Iterator(Vector &v, size_t i) : vector(v), ind(i) { }
-
+                
+                //добавил throws для операторов итераторов
                 Iterator& operator++() {
+                    if (this->ind == this->vector.size()) throw std::logic_error("You cant use ++");
                     ++ind;
                     return *this;
                 }
 
                 Iterator& operator--() {
+                    if (this->ind == 0) throw std::logic_error("You cant use --");
                     --ind;
                     return *this;
                 }
 
                 reference operator*() {
+                    if (this->ind >= this->vector.size()) throw std::logic_error("Index is out o range");
                     return vector[ind];
                 }
 
                 pointer operator->() {
+                    if (this->ind >= this->vector.size()) throw std::logic_error("Index is out o range");
                     return &vector[ind];
                 }
 
@@ -168,20 +174,24 @@ class Vector {
                 ConstIterator(Vector &v, size_t i) : vector(v), ind(i) { }
 
                 const ConstIterator& operator++() {
+                    if (this->ind == this->vector.size()) throw std::logic_error("You cant use ++");
                     ++ind;
                     return *this;
                 }
 
                 const ConstIterator& operator--() {
-                      --ind;
+                    if (this->ind == 0) throw std::logic_error("You cant use --");
+                    --ind;
                     return *this;
                 }
 
                 const reference operator*() {
+                    if (this->ind >= this->vector.size()) throw std::logic_error("Index is out o range");
                     return vector[ind];
                 }
 
                 const pointer operator->() {
+                    if (this->ind >= this->vector.size()) throw std::logic_error("Index is out o range");
                     return &vector[ind];
                 }
 

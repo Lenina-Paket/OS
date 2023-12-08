@@ -105,8 +105,7 @@ TEST(Iterator, test_02) {
     ASSERT_EQ(*iter, 3);
     ++iter;
     ASSERT_EQ(iter, vec.end());
-    ++iter; --iter;
-    ASSERT_EQ(iter, vec.end());
+    ASSERT_ANY_THROW(++iter);
 }
 
 TEST(const_iterator, test_01) {
@@ -134,6 +133,5 @@ TEST(Const_iterator, test_02) {
     ASSERT_EQ(*iter, 3);
     ++iter;
     ASSERT_EQ(iter, vec.cend());
-    ++iter; --iter;
-    ASSERT_EQ(iter, vec.cend());
+    ASSERT_ANY_THROW(++iter);
 }
