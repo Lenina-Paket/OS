@@ -68,14 +68,6 @@ void NPC::move(int shift_x, int shift_y, int max_x, int max_y) {
         _y += shift_y;
 }
 
-bool NPC::win() {
-    int attack = std::rand() % 6 + 1;
-    int defend = std::rand() % 6 + 1;
-    if (attack > defend) 
-        return true;
-    return false;
-}
-
 bool NPC::isAlive() {
     std::lock_guard<std::mutex> lck(mtx);
     return _alive;
@@ -119,6 +111,13 @@ void NPC::notify(std::shared_ptr<NPC> attacker, std::shared_ptr<NPC> defender) c
     }
 }
 
+bool win() {
+    int attack = std::rand() % 6;
+    int defend = std::rand() % 6;
+    if (attack > defend) return true;
+    return false;
+}
+
 
 
 //--------------------------------DRUID-----------------------------------------//
@@ -142,8 +141,7 @@ bool Druid::accept(std::shared_ptr<NPC> visitor)
 
 bool Druid::visit(std::shared_ptr<Druid> hero) 
 {
-    if (win()) 
-    {
+    if (win()) {
         notify(std::shared_ptr<Druid>(this,[](Druid*){}), hero);
         return true;
     }

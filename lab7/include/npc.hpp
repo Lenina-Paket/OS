@@ -64,7 +64,7 @@ class NPC {
         double distance(const std::shared_ptr<NPC> &other);
         void move(int shift_x, int shift_y, int max_x, int max_y);
 
-        bool win();
+        // bool win();
         bool isAlive();
         void must_die();
         
@@ -127,7 +127,6 @@ class Observer {
 class Observer_File : public Observer {
     public:
         void update(std::shared_ptr<NPC> attacker, std::shared_ptr<NPC> defender) override {
-            std::lock_guard<std::shared_mutex> lck(print_mutex);
             std::ofstream file("log.txt", std::ios_base::app);
             file << std::endl << attacker->get_type() << ' ' << attacker->get_name() << " убил " << defender->get_type() << ' ' << defender->get_name() << std::endl;
             file.close();
@@ -136,9 +135,14 @@ class Observer_File : public Observer {
 
 class Observer_Console : public Observer {
     public:
+
         void update(std::shared_ptr<NPC> attacker, std::shared_ptr<NPC> defender) override {
+            {
             std::lock_guard<std::shared_mutex> lck(print_mutex);
             std::cout << attacker->get_type() << ' ' << attacker->get_name() << 
             " killed " << defender->get_type() << ' ' << defender->get_name() << std::endl;
+            std::cout << *attacker << std::endl;
+            std::cout << *defender << std::endl;
+            }
         }
 };

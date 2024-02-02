@@ -62,6 +62,15 @@ TEST(Test_Druid, Constructor) {
     EXPECT_TRUE(druid.get_name() == name and druid.get_type() == "Druid");
 }
 
+TEST(Test_Druid, FightDruid)
+{
+    std::string name = "Obelix";
+    std::shared_ptr<Druid> druid1 = std::make_shared<Druid> (name, 1, 1);
+    std::shared_ptr<Druid> druid2 = std::make_shared<Druid> (name, 1, 2);
+    
+    EXPECT_TRUE(druid1->accept(druid2) == true and druid2->accept(druid1) == true);
+}
+
 TEST(Test_Druid, FightElfKnigth){
     std::string name = "Obelix";
     std::shared_ptr<Druid> druid = std::make_shared<Druid> (name, 1, 1);

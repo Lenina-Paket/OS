@@ -10,7 +10,7 @@ struct Fight {
 class Battle {
     private:
         std::queue<Fight> events;
-        std::shared_mutex mtx;
+        // std::shared_mutex mtx;
 
         Battle() {};
     public:
