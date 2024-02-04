@@ -14,7 +14,7 @@ NPC::NPC(std::istream& stream) {
 }
 
 std::string NPC::get_type() {
-    std::lock_guard<std::mutex> lck(mtx);
+    // std::lock_guard<std::mutex> lck(mtx);
     switch(_type) {
         case DRUID:
             return "Druid";
@@ -29,7 +29,7 @@ std::string NPC::get_type() {
 }
 
 int NPC::get_int_type() {
-    std::lock_guard<std::mutex> lck(mtx);
+    // std::lock_guard<std::mutex> lck(mtx);
     return this->_type;
 }
 
@@ -39,12 +39,12 @@ std::string NPC::get_name() {
 }
 
 double NPC::distance(const std::shared_ptr<NPC> &other) {
-    std::lock_guard<std::mutex> lck(mtx);
+    // std::lock_guard<std::mutex> lck(mtx);
     return sqrt(pow((_x - other->_x), 2) + pow((_y - other->_y), 2));
 }
 
 std::pair <int, int> NPC::position() {
-    std::lock_guard<std::mutex> lck(mtx);
+    // std::lock_guard<std::mutex> lck(mtx);
     return std::pair <int, int> {_x, _y};
 }
 
@@ -61,7 +61,7 @@ bool NPC::isClose(const std::shared_ptr<NPC> &other) {
 
 
 void NPC::move(int shift_x, int shift_y, int max_x, int max_y) {
-    std::lock_guard<std::mutex> lck(mtx);
+    // std::lock_guard<std::mutex> lck(mtx);
     if ((_x + shift_x >= 0) && (_x + shift_x <= max_x))
         _x += shift_x;
     if ((_y + shift_y >= 0) && (_y + shift_y <= max_y))
@@ -69,12 +69,12 @@ void NPC::move(int shift_x, int shift_y, int max_x, int max_y) {
 }
 
 bool NPC::isAlive() {
-    std::lock_guard<std::mutex> lck(mtx);
+    // std::lock_guard<std::mutex> lck(mtx);
     return _alive;
 }
 
 void NPC::must_die() {
-    std::lock_guard<std::mutex> lck(mtx);
+    // std::lock_guard<std::mutex> lck(mtx);
     _alive = false;
 }
 

@@ -138,7 +138,7 @@ class Observer_Console : public Observer {
 
         void update(std::shared_ptr<NPC> attacker, std::shared_ptr<NPC> defender) override {
             {
-            std::lock_guard<std::shared_mutex> lck(print_mutex);
+            // std::lock_guard<std::shared_mutex> lck(print_mutex);
             std::cout << attacker->get_type() << ' ' << attacker->get_name() << 
             " killed " << defender->get_type() << ' ' << defender->get_name() << std::endl;
             std::cout << *attacker << std::endl;

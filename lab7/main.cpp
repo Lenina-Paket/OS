@@ -106,8 +106,9 @@ int main() {
                 stop = true;
                 break;
             }
-            {
-            std::lock_guard<std::shared_mutex> lck(print_mutex);
+
+        {
+        std::lock_guard<std::shared_mutex> lck(print_mutex);
             for (std::shared_ptr<NPC> npc : array) {
                 if(npc->isAlive()) {
                     int distMove = npc->get_move();
@@ -115,14 +116,10 @@ int main() {
                     int shift_y;
                     if (shift_x >= 0) shift_y = (distMove - shift_x) * (std::rand() % 3 - 1);
                     else shift_y = (distMove + shift_x) * (std::rand() % 3 - 1);
-                    {
-                    // std::lock_guard<std::shared_mutex> lck(print_mutex);
+                    
                     npc->move(shift_x, shift_y, MAX_X, MAX_Y);
-                    }
                 }
             }
-            }
-            // std::lock_guard<std::shared_mutex> lck(print_mutex);
             for (std::shared_ptr<NPC> npc : array)
                 for (std::shared_ptr<NPC> other : array)
                     if (other != npc)
@@ -131,7 +128,8 @@ int main() {
                                 if (npc->isClose(other))
                                     Battle::get().add_event({npc, other});
 
-            // std::this_thread::sleep_for(30ms);
+        }
+        std::this_thread::sleep_for(10ms);
         }
     });
     
@@ -169,8 +167,7 @@ int main() {
         }
         {
         std::lock_guard<std::shared_mutex> lck(print_mutex);
-        for (int j = 0; j < grid; ++j)
-        {
+        for (int j = 0; j < grid; ++j) {
             for (int i = 0; i < grid; ++i)
             {
                 char c = fields[i + j * grid];
